@@ -21,7 +21,7 @@ const LoginPage = () => {
 
   return (
     <div className="flex justify-center items-center bg-darkCustom h-screen">
-      <div className="w-1/4 h-2/4 bg-[#1c1d1f] flex items-center justify-center flex-col p-10">
+      <div className="md:w-1/4 w-full h-2/4 bg-[#1c1d1f] flex items-center justify-center flex-col p-10">
         <h1 className="text-white text-xl font-bold mb-20">Login</h1>
         <Input
           className="bg-[#1c1d1f] text-white"

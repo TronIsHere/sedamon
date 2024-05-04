@@ -77,10 +77,13 @@ export default function Home() {
     socket.emit("send_msg", msgData);
     setCurrentMessage("");
   };
+  const connectVoice = () => {
+    router.push("/room");
+  };
   return (
     <div className="bg-darkCustom text-white h-screen ">
-      <div className="grid grid-cols-1 md:grid-cols-10 max-w-[1300px] mx-auto gap-10">
-        <div className="col-span-2 h-screen  pt-10 pr-10 border-r border-gray-600">
+      <div className="grid grid-cols-1 lg:grid-cols-10 max-w-[1300px] mx-auto gap-10">
+        <div className="col-span-2 w-ful h-screen  pt-10 pr-10 border-r border-gray-600">
           <p className="border-b border-gray-600 pb-2">welcome {name} :D</p>
           <p className="pt-2">people in the chat :</p>
           <div className="flex flex-col justify-between  ">
@@ -127,7 +130,11 @@ export default function Home() {
               </div>
             </div>
             <div className="flex flex-col mt-24 space-y-3">
-              <Button variant={"ghost"} className="bg-green-500 ">
+              <Button
+                variant={"ghost"}
+                className="bg-green-500 "
+                onClick={connectVoice}
+              >
                 Join
               </Button>
               <Button variant={"ghost"} className="bg-red-500 ">
@@ -136,7 +143,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-        <div className="col-span-8">
+        <div className="col-span-8 hidden lg:block">
           <div className="grid grid-rows-10 h-screen py-5 ">
             <div className="row-span-9 flex flex-col mb-10 overflow-scroll space-y-4">
               <div className="flex flex-col justify-end border-r flex-grow">
