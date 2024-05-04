@@ -23,6 +23,13 @@ export default function Home() {
   const router = useRouter();
   socket.emit("join_room", 1);
 
+  const messagesEndRef = React.useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
   useEffect(() => {
     if (localStorage.getItem("name") === "" || !localStorage.getItem("name")) {
       router.push("/login");
@@ -132,9 +139,16 @@ export default function Home() {
         <div className="col-span-8">
           <div className="grid grid-rows-10 h-screen py-5 ">
             <div className="row-span-9 flex flex-col mb-10 overflow-scroll space-y-4">
-              {messages.map((message, index) => (
-                <MessageC key={index} text={message.msg} name={message.user} />
-              ))}
+              <div className="flex flex-col justify-end border-r flex-grow">
+                {messages.map((message, index) => (
+                  <MessageC
+                    key={index}
+                    text={message.msg}
+                    name={message.user}
+                  />
+                ))}
+                <div ref={messagesEndRef}></div>
+              </div>
             </div>
             <div className="bg-[#1c1d1f] rounded-lg flex items-center p-3 justify-between">
               <Input
